@@ -1,6 +1,10 @@
+import { useState } from 'react'
 import { Menu, Github, Linkedin, Mail } from 'lucide-react'
+import MobileMenu from './MobileMenu'
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false)
+
   return (
     <header className="relative z-20 w-full">
       <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
@@ -18,10 +22,11 @@ export default function Navbar() {
           <a href="https://linkedin.com" target="_blank" className="p-2 rounded-md bg-white/5 hover:bg-white/10 text-white/80 transition" aria-label="LinkedIn"><Linkedin size={18} /></a>
           <a href="mailto:hello@apilchand.com" className="p-2 rounded-md bg-white/5 hover:bg-white/10 text-white/80 transition" aria-label="Email"><Mail size={18} /></a>
         </div>
-        <button className="md:hidden p-2 rounded-md bg-white/5 text-white/80" aria-label="Menu">
+        <button onClick={() => setOpen(true)} className="md:hidden p-2 rounded-md bg-white/5 text-white/80" aria-label="Menu">
           <Menu size={20} />
         </button>
       </div>
+      <MobileMenu open={open} onClose={() => setOpen(false)} />
     </header>
   )
 }
